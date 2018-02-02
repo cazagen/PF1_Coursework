@@ -41,19 +41,30 @@ int main(int argc, char **argv) {
 
     if (use_stdin != 0) {
         fgets(input, 50000, stdin);
-        printf(input);
     } else {
         file_input = fopen(file_input_name, "r");
 
         if(file_input == NULL) {
             return 1;
         }
-        
-        while (fgets(input, 50000, file_input) != NULL) {
-            printf("%s", input);
-        }
+
+        // while (fgets(input, 50000, file_input) != NULL) {
+        //     printf("%s", input);
+        // }
 
         fclose(file_input);
+    }
+
+    if (use_stdout != 0) {
+        printf("using stdout lol butts\n");
+    } else {
+        file_output = fopen(file_output_name, "w");
+
+        for(int i = 0; i < strlen(input); i++){
+            fprintf(file_output, input);
+        }
+
+        fclose(file_output);
     }
     return 0;
 }
