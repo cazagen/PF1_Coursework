@@ -44,8 +44,15 @@ int main(int argc, char **argv) {
         printf(input);
     } else {
         file_input = fopen(file_input_name, "r");
-        fgets(input, 50000, file_input);
-        printf(input);
+
+        if(file_input == NULL) {
+            return 1;
+        }
+        
+        while (fgets(input, 50000, file_input) != NULL) {
+            printf("%s", input);
+        }
+
         fclose(file_input);
     }
     return 0;
