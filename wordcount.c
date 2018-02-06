@@ -33,38 +33,44 @@ void setup(int argc, char **argv) {
     printf("Input file: %s\nOutput file: %s\n\n", file_input_name, file_output_name);
 }
 
-int main(int argc, char **argv) {
-    // Run setup
-    setup(argc, argv);
+void output(char *input) {
+    if (use_stdout != 0) {
+        printf("Your data:\n%s\n", input);
+    } else {
+        file_output = fopen(file_output_name, "w");
 
+        fclose(file_output);
+    }
+}
+
+void input() {
+    char *line = NULL;
+	size_t len = 0;
+	ssize_t read;
     char input[50000];
 
     if (use_stdin != 0) {
         fgets(input, 50000, stdin);
     } else {
-        file_input = fopen(file_input_name, "r");
+        input[0] = '\0';
 
-        if(file_input == NULL) {
-            return 1;
-        }
-
-        // while (fgets(input, 50000, file_input) != NULL) {
-        //     printf("%s", input);
-        // }
-
-        fclose(file_input);
+	    file_input = fopen(file_input_name, "r");
+	
+	    while ((read = getline(&line, &len, file_input)) != -1) {
+            strcat(input, line);
+	    }
+	    free(line);
+	    fclose(file_input);
     }
 
-    if (use_stdout != 0) {
-        printf("using stdout lol butts\n");
-    } else {
-        file_output = fopen(file_output_name, "w");
+    output(input);
+}
 
-        for(int i = 0; i < strlen(input); i++){
-            fprintf(file_output, input);
-        }
 
-        fclose(file_output);
-    }
+int main(int argc, char **argv) {
+    // Run setup
+    setup(argc, argv);
+    input();
+    
     return 0;
 }
