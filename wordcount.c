@@ -38,21 +38,30 @@ void output(char *input) {
         printf("Your data:\n%s\n", input);
     } else {
         file_output = fopen(file_output_name, "w");
-
+        fprintf(file_output, "%s\n", input);
         fclose(file_output);
     }
 }
 
 void input() {
     char *line = NULL;
+    char input[50000];
+    char temp[50000];
 	size_t len = 0;
 	ssize_t read;
-    char input[50000];
+    int ch;
+
+    input[0] = '\0';
 
     if (use_stdin != 0) {
+        printf("CTRL+Z to escape (CTRL+D on unix)\n\n");
+        while ( ( ch=getchar() ) != EOF ) {
+            fgets(temp, 50000, stdin);
+            strcat(input, temp);
+        }
+        
         fgets(input, 50000, stdin);
     } else {
-        input[0] = '\0';
 
 	    file_input = fopen(file_input_name, "r");
 	
