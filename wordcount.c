@@ -57,12 +57,9 @@ void output(char *input) {
         current_word = strtok (input," ,.-\n\r\t");
         while (current_word != NULL)
         {
-          printf ("%s\n",current_word);
-          current_word = strtok (NULL, " ,.-\n\r\t");
+            printf ("%s\n",current_word);
+            current_word = strtok (NULL, " ,.-\n\r\t");
         }
-
-
-
 
     } else {
         file_output = fopen(file_output_name, "w");
