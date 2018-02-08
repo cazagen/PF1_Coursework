@@ -29,13 +29,41 @@ void setup(int argc, char **argv) {
             ignore_case = 1;
         }
     }
+
+    #ifdef DEBUG
+    printf("\033[1;31m");
+    printf("\n\nDEBUG MODE DEBUG MODE\n\n");
+    printf("\033[0m");
     printf("\nUse STDIN: %d\nUse STDOUT: %d\nIgnore case: %d\n\n", use_stdin, use_stdout, ignore_case);
     printf("Input file: %s\nOutput file: %s\n\n", file_input_name, file_output_name);
+    #endif
+    
 }
 
 void output(char *input) {
     if (use_stdout != 0) {
-        printf("Your data:\n%s\n", input);
+        printf("\033[1;32m");
+        printf("\n\nSTART OF INPUT\n\n");
+        printf("\033[0m");
+
+        printf("%s\n", input);
+
+        printf("\033[1;32m");
+        printf("\nEND OF INPUT\n\n");
+        printf("\033[0m");
+
+        char str[] ="- This, a sample string.";
+        char * current_word;
+        current_word = strtok (input," ,.-\n\r\t");
+        while (current_word != NULL)
+        {
+          printf ("%s\n",current_word);
+          current_word = strtok (NULL, " ,.-\n\r\t");
+        }
+
+
+
+
     } else {
         file_output = fopen(file_output_name, "w");
         fprintf(file_output, "%s\n", input);
