@@ -17,6 +17,9 @@ struct words {
     int count;
 };
 
+struct words word_array[1000];
+
+int word_count = 0;
 
 void setup(int argc, char **argv) {
     for(int i = 0; i < argc; i++) {
@@ -44,34 +47,70 @@ void setup(int argc, char **argv) {
     printf("Input file: %s\nOutput file: %s\n\n", file_input_name, file_output_name);
     #endif
     
-    struct words word_array[1000];
+    for(int i = 0; i < 999; i++){
+        word_array[i].name = NULL;
+        word_array[i].count = 0;
+    }
+
 }
 
 void output(char *input) {
-    if (use_stdout != 0) {
-        printf("\033[1;32m");
-        printf("\n\nSTART OF INPUT\n\n");
-        printf("\033[0m");
+    #ifdef DEBUG
+    printf("\033[1;32m");
+    printf("\n\nSTART OF INPUT\n\n");
+    printf("\033[0m");
+    printf("%s", input);
+    printf("\033[1;32m");
+    printf("\nEND OF INPUT\n\n");
+    printf("\033[0m");
+    #endif
 
-        printf("%s", input);
+    char *current_word;
+    current_word = strtok (input," ,.-\n\r\t");
+    int index = 0;
+    int is_there = 0;
 
-        printf("\033[1;32m");
-        printf("\nEND OF INPUT\n\n");
-        printf("\033[0m");
-
-        char *current_word;
-        current_word = strtok (input," ,.-\n\r\t");
-        while (current_word != NULL)
-        {
-            printf ("%s\n",current_word);
-            current_word = strtok (NULL, " ,.-\n\r\t");
+    while (current_word != NULL) {
+        is_there = 0;
+        for(int i = 0; i < 999; i++){
+            if(word_array[i].name != NULL){
+                if(strcmp(current_word, word_array[i].name) == 0){
+                    word_array[i].count = word_array[i].count + 1;
+                    is_there = 1;
+                }
+            }
         }
+        if(is_there == 0){
+            word_array[index].name = current_word;
+            word_array[index].count = 1;
+        }
+        index++;
+        current_word = strtok(NULL, " ,.-\n\r\t");
+    }
 
-    } else {
+    word_count = index;
+    printf("Total word count: %d\n\n", word_count);
+
+    char output[50000];
+    output[0] = '\0';
+
+    if(use_stdout == 1){
+        for(int i = 0; i < 999; i++){
+            if(word_array[i].name != NULL){
+                printf("%s: ", word_array[i].name);
+                printf("%d\n", word_array[i].count);
+            }
+        }
+    } else{
         file_output = fopen(file_output_name, "w");
-        fprintf(file_output, "%s\n", input);
+        for(int i = 0; i < 999; i++){
+            if(word_array[i].name != NULL){
+                fprintf(file_output, "%s: %d\n", word_array[i].name, word_array[i].count);
+            }
+        }
         fclose(file_output);
     }
+
 }
 
 void input() {
@@ -90,8 +129,6 @@ void input() {
             fgets(temp, 50000, stdin);
             strcat(input, temp);
         }
-        
-        fgets(input, 50000, stdin);
     } else {
 
 	    file_input = fopen(file_input_name, "r");
@@ -114,4 +151,3 @@ int main(int argc, char **argv) {
 
     return 0;
 }
-q
