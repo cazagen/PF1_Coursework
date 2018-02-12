@@ -12,6 +12,12 @@ FILE *file_output;
 
 int ignore_case = 0;
 
+struct words {
+    char *name;
+    int count;
+};
+
+
 void setup(int argc, char **argv) {
     for(int i = 0; i < argc; i++) {
         // Decide whether or not to read from stdin
@@ -38,6 +44,7 @@ void setup(int argc, char **argv) {
     printf("Input file: %s\nOutput file: %s\n\n", file_input_name, file_output_name);
     #endif
     
+    struct words word_array[1000];
 }
 
 void output(char *input) {
@@ -46,14 +53,13 @@ void output(char *input) {
         printf("\n\nSTART OF INPUT\n\n");
         printf("\033[0m");
 
-        printf("%s\n", input);
+        printf("%s", input);
 
         printf("\033[1;32m");
         printf("\nEND OF INPUT\n\n");
         printf("\033[0m");
 
-        char str[] ="- This, a sample string.";
-        char * current_word;
+        char *current_word;
         current_word = strtok (input," ,.-\n\r\t");
         while (current_word != NULL)
         {
@@ -105,6 +111,7 @@ int main(int argc, char **argv) {
     // Run setup
     setup(argc, argv);
     input();
-    
+
     return 0;
 }
+q
