@@ -18,7 +18,7 @@ struct words {
     int count;
 };
 
-struct words word_array[1000];
+struct words word_array[10000];
 
 int word_count = 0;
 
@@ -48,7 +48,7 @@ void setup(int argc, char **argv) {
     printf("Input file: %s\nOutput file: %s\n\n", file_input_name, file_output_name);
     #endif
     
-    for(int i = 0; i < 999; i++){
+    for(int i = 0; i < 9999; i++){
         word_array[i].name = NULL;
         word_array[i].count = 0;
     }
@@ -73,7 +73,7 @@ void output(char *input) {
 
     while (current_word != NULL) {
         is_there = 0;
-        for(int i = 0; i < 999; i++){
+        for(int i = 0; i < 9999; i++){
             if(word_array[i].name != NULL){
                 if(strcmp(current_word, word_array[i].name) == 0){
                     word_array[i].count = word_array[i].count + 1;
@@ -96,7 +96,7 @@ void output(char *input) {
 
     if(use_stdout == 1){
         printf("Total word count: %d\n\n", word_count);
-        for(int i = 0; i < 999; i++){
+        for(int i = 0; i < 9999; i++){
             if(word_array[i].name != NULL){
                 printf("%s: ", word_array[i].name);
                 printf("%d\n", word_array[i].count);
@@ -105,7 +105,7 @@ void output(char *input) {
     } else{
         file_output = fopen(file_output_name, "w");
         fprintf(file_output,"Total word count: %d\n\n", word_count);
-        for(int i = 0; i < 999; i++){
+        for(int i = 0; i < 9999; i++){
             if(word_array[i].name != NULL){
                 fprintf(file_output, "%s: %d\n", word_array[i].name, word_array[i].count);
             }
