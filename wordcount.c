@@ -89,12 +89,12 @@ void output(char *input) {
     }
 
     word_count = index;
-    printf("Total word count: %d\n\n", word_count);
 
     char output[50000];
     output[0] = '\0';
 
     if(use_stdout == 1){
+        printf("Total word count: %d\n\n", word_count);
         for(int i = 0; i < 999; i++){
             if(word_array[i].name != NULL){
                 printf("%s: ", word_array[i].name);
@@ -103,6 +103,7 @@ void output(char *input) {
         }
     } else{
         file_output = fopen(file_output_name, "w");
+        fprintf(file_output,"Total word count: %d\n\n", word_count);
         for(int i = 0; i < 999; i++){
             if(word_array[i].name != NULL){
                 fprintf(file_output, "%s: %d\n", word_array[i].name, word_array[i].count);
