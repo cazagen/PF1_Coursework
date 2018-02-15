@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 int use_stdin = 1;
 char* file_input_name;
@@ -141,6 +142,11 @@ void input() {
 	    fclose(file_input);
     }
 
+    if (ignore_case == 1) {
+        for(int i = 0; input[i]; i++){
+            input[i] = tolower(input[i]);
+        }
+    }
     output(input);
 }
 
