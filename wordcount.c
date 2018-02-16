@@ -7,7 +7,7 @@
 #include <string.h>
 #include <ctype.h>
 
-const int ARRAY_SIZE = 10000;
+#define ARRAY_SIZE 10000
 
 int use_stdin = 1;
 char* file_input_name;
