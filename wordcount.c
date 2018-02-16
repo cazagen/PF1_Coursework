@@ -55,6 +55,21 @@ void setup(int argc, char **argv) {
 
 }
 
+void sort_output() {
+    for(int i = 0; i < 9999; i++) {
+        for(int j = 0; j < 9999 - (i + 1); j++) {
+            if ((word_array[j].count) < (word_array[j + 1].count)) {
+                char *temp_name = word_array[j + 1].name;
+                int temp_count = word_array[j + 1].count;
+                word_array[j + 1].name = word_array[j].name; 
+                word_array[j + 1].count = word_array[j].count;
+                word_array[j].name = temp_name;
+                word_array[j].count = temp_count;
+            }
+        }
+    }
+}
+
 void output(char *input) {
     #ifdef DEBUG
     printf("\033[1;32m");
@@ -91,8 +106,7 @@ void output(char *input) {
 
     word_count = index;
 
-    char output[50000];
-    output[0] = '\0';
+    sort_output();
 
     if(use_stdout == 1){
         printf("Total word count: %d\n\n", word_count);
@@ -149,6 +163,7 @@ void input() {
     }
     output(input);
 }
+
 
 
 int main(int argc, char **argv) {
