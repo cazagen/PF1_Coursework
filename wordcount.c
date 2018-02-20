@@ -62,7 +62,7 @@ void setup(int argc, char **argv) {
 
 }
 
-// Sort the array by occurence of words decreasing
+// Sort the array by occurrence of words decreasing
 void sort_array() {
     for(int i = 0; i < ARRAY_SIZE; i++) {
         for(int j = 0; j < ARRAY_SIZE - (i + 1); j++) {
