@@ -35,11 +35,13 @@ void setup(int argc, char **argv) {
             use_stdin = 0;
             file_input_name = argv[i + 1];
         }
+
         // Decide whether or not to output to stdout
         if (strcmp(argv[i], "-o") == 0) {
             use_stdout = 0;
             file_output_name = argv[i + 1];
         }
+        
         // Decide whether or not to ignore case
         if (strcmp(argv[i], "-c") == 0) {
             ignore_case = 1;
