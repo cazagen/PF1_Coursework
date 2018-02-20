@@ -1,7 +1,6 @@
 // Cameron Sharp
 // 40275188@live.napier.ac.uk
 // Last Modified: 16/02/2018
-// TODO: add constant for array size
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -157,6 +156,7 @@ void input() {
         while ( ( ch=getchar() ) != EOF ) {
             fgets(temp, 50000, stdin);
             strcat(input, temp);
+
         }
     } else {
 
