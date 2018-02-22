@@ -82,6 +82,13 @@ void sort_array() {
     }
 }
 
+// Count how many words there are
+void count_words() {
+    for(int i = 0; i < ARRAY_SIZE; i++) {
+        word_count += word_array[i].count;
+    }
+}
+
 // Output data to stdout/file
 void output(char *input) {
     #ifdef DEBUG
@@ -99,6 +106,7 @@ void output(char *input) {
     int index = 0;
     int is_there = 0;
 
+    // Go through each word in file/stdin and record it
     while (current_word != NULL) {
         is_there = 0;
         for(int i = 0; i < ARRAY_SIZE; i++){
@@ -117,9 +125,9 @@ void output(char *input) {
         current_word = strtok(NULL, " ,.-?!\n\r\t");
     }
 
-    word_count = index;
-
     sort_array();
+
+    count_words();
 
     if(use_stdout == 1){
         printf("Total word count: %d\n\n", word_count);
@@ -176,6 +184,7 @@ void input() {
     }
     output(input);
 }
+
 
 
 // Run setup and input
