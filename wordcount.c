@@ -157,7 +157,6 @@ void input() {
     char temp[50000];
 	size_t len = 0;
 	ssize_t read;
-    int ch;
 
     input[0] = '\0';
 

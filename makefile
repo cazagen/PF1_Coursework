@@ -8,3 +8,5 @@ debug:
 clean:
 	rm -f wordcount 
 	rm -f wordcount.o
+test1:
+	
