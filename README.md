@@ -9,4 +9,4 @@ The wordcount program when ran will analyse the input from either standard input
 
 ## Running
 
-- R
+- To run the program run `./executable_name [-i input_file] [-o output_file] [-c]`
