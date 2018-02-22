@@ -1,6 +1,6 @@
 # Wordcount
 
-The wordcount program when ran will analyse the input from either standard input or a provided text file, and will output the total word count followed by each word found, and how many time that word occured
+The wordcount program when ran will analyse the input from either standard input or a provided text file, and will output the total word count followed by each word found, and how many time that word occurred
 
 ## Building
 
