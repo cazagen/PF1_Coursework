@@ -155,10 +155,8 @@ void input() {
 
     if (use_stdin != 0) {
         printf("CTRL+Z to escape (CTRL+D on unix)\n\n");
-        while ( ( ch=getchar() ) != EOF ) {
-            fgets(temp, 50000, stdin);
+        while ( fgets(temp, 50000, stdin) != NULL ) {
             strcat(input, temp);
-
         }
     } else {
 
