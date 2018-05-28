@@ -1,6 +1,7 @@
 // Cameron Sharp
 // 40275188@live.napier.ac.uk
 // Last Modified: 16/02/2018
+// This program does ...
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
